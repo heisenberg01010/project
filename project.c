@@ -124,7 +124,8 @@ void comparison()
         ch1 = getc(fp1); 
         ch2 = getc(fp2); 
     } 
-fclose(fp1); 
+    printf("\n\tFiles are identical\n");
+	fclose(fp1); 
     fclose(fp2); 
 }
 
@@ -207,14 +208,14 @@ void Edit()
 		printf("%c",c);
 
 	}
-	printf("\n\tEnter the text and press '.' to save\n\n\t");
+	printf("\n\tPress tab key and then enter key to save\n\n\t");
 
 	while(1)
 		{
 			c=getchar();
 			fputc(c,fp1);
 
-		if(c == '.')
+		if(c == '\t')
 			{
 				fclose(fp1);
 				break;
