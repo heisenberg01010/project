@@ -283,6 +283,8 @@ void Find()
 		}
 		line++;
 	}
+	if(fp)
+		fclose(fp1);
 }
 
 
