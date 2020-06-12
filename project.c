@@ -258,6 +258,32 @@ void SaveAs()
 		}
 }
 
+void Find()
+{
+	printf("\n\tEnter the file name: ");
+	scanf("%s",fn);
+	fp1=fopen(fn,"r");
+
+	if(fp1==NULL)
+	{
+		printf("\n\tFile not found!");
+		fclose(fp1);
+	}
+	char temp[10000];
+	int line = 1;
+	int match_no = 0;
+
+	while(fgets(temp, 10000, fn) != NULL) 
+	{
+		if((strstr(temp, str)) != NULL) 
+		{
+			printf("A match found on line: %d\n", line);
+			printf("\n%s\n", temp);
+			match_no++;
+		}
+		line++;
+	}
+}
 
 
 
