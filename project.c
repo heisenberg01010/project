@@ -15,13 +15,14 @@ void Delete();
 void View();
 void comparison();
 void Edit();
+void Find();
 #define esc 27
 
 int main()
 {
 	do {
 		do{
-			printf("\n-------------------------------------------------------------- CP Assign.-----------------------------------------------");
+			printf("\n-----------------------------------------TEXT EDITOR-------------------------------------------------------------");
 			printf("\n\n\tMENU:\n\t\n");
 			printf("\n\t1.NEWFILE\n\t2.VIEW\n\t3.COPY\n\t4.DELETE\n\t5.COMPARISON\n\t6.EDIT\n\t7.SAVEAS\n\t8.EXIT\n");
 			printf("\n\tEnter your choice: ");
@@ -53,6 +54,9 @@ int main()
 			SaveAs();
 			break;
 			case 8:
+			Find();
+			break;	
+			case 9:
 			exit(0);
 			}
 			}while(1);
@@ -269,20 +273,29 @@ void Find()
 		printf("\n\tFile not found!");
 		fclose(fp1);
 	}
-	char temp[10000];
+	char temp[100000];
 	int line = 1;
 	int match_no = 0;
+	char str[100];
 
-	while(fgets(temp, 10000, fn) != NULL) 
+	printf("\tEnter the phrase to search: ");
+	scanf("%s", str);
+
+	while(fgets(temp, 100000, fp1) != NULL) 
 	{
 		if((strstr(temp, str)) != NULL) 
 		{
-			printf("A match found on line: %d\n", line);
-			printf("\n%s\n", temp);
+			printf("\tA match found on line: %d\n", line);
+			printf("\n\t%s\n", temp);
 			match_no++;
 		}
 		line++;
 	}
+	if(match_no == 0)
+	{
+		printf("\tNo match found");
+	}
+	fclose(fp1);
 }
 
 
