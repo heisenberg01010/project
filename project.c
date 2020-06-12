@@ -15,6 +15,7 @@ void Delete();
 void View();
 void comparison();
 void Edit();
+#define esc 27
 
 int main()
 {
@@ -64,22 +65,29 @@ void NewFile()
 	printf("\n\tEnter the name of the file to be created: ");
 	scanf("%s", name);
 	fp1=fopen(name,"w");
-	printf("\n\tPress tab key and then enter key to save.\n\n\t");
+	printf("\n\tPress Esc and then Enter to save.\n\t");
+	printf("Press Tab key and then Enter to quit without saving.\n\n\t");
 	char temp;
 	scanf("%c", &temp);
 
 	while(1)
+	{
+		c=getchar();
+		fputc(c,fp1);
+
+		if(c == esc )
 		{
-			c=getchar();
-			fputc(c,fp1);
-
-		if(c == '\t')
-			{
-				fclose(fp1);
-				break;
-			}
-
+			fclose(fp1);
+			break;
 		}
+
+		else if(c == '\t')
+		{
+			remove(name);
+			break;
+		}	
+
+	}
 }
 
 void comparison()
@@ -208,14 +216,14 @@ void Edit()
 		printf("%c",c);
 
 	}
-	printf("\n\tPress tab key and then enter key to save\n\n\t");
+	printf("\n\tPress Esc and then enter key to save.\n\n\t");
 
 	while(1)
 		{
 			c=getchar();
 			fputc(c,fp1);
 
-		if(c == '\t')
+		if(c == esc )
 			{
 				fclose(fp1);
 				break;
