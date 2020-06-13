@@ -154,8 +154,7 @@ void View()
 	if(fp1==NULL)
 	{
 		printf("\n\tFile not found!");
-		fclose(fp1);
-		printf("\n\n\tPress any key to continue\n");
+		return;
 	}
 	while(!feof(fp1))
 	{
