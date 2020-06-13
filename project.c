@@ -23,46 +23,76 @@ void Find();
 
 int main()
 {
-	do {
-		do{
-			printf("\n-----------------------------------------TEXT EDITOR-------------------------------------------------------------");
+	do 
+	{
+		do
+		{
+			printf("\n-----------------------------------------TEXT EDITOR--------------------------------------------------");
 			printf("\n\n\tMENU:\n\t\n");
 			printf("\n\t1.NEWFILE\n\t2.VIEW\n\t3.COPY\n\t4.DELETE\n\t5.COMPARISON\n\t6.EDIT\n\t7.SAVEAS\n\t8.FIND\n\t9.EXIT\n");
 			printf("\n\tEnter your choice: ");
-			scanf("%d",&ch);
 			
-		 }while (ch < 1 || ch > 10);
-		
-	switch(ch)
-			{
+			scanf(" %d",&ch);
+			getchar();
+			
+		}
+		while (ch < 1 || ch > 9);
+
+		switch(ch)
+		{
 			case 1:
-			NewFile();
-			break;
+			{
+				NewFile();
+				break;
+			}
 			case 2:
-			View();
-			break;
+			{
+				View();
+				break;
+			}
 			case 3:
-			Copy();
-			break;
+			{
+				Copy();
+				break;
+			}	
 			case 4:
-			Delete();
-			break;
+			{
+				Delete();
+				break;
+			}	
 			case 5:
-			comparison();
-			break;
+			{
+				comparison();
+				break;
+			}	
 			case 6:
-			Edit();
-			break;
+			{
+				Edit();
+				break;
+			}
 			case 7:
-			SaveAs();
-			break;
+			{
+				SaveAs();
+				break;
+			}
 			case 8:
-			Find();
-			break;	
+			{
+				Find();
+				break;	
+			}
 			case 9:
 			exit(0);
+			
+			default:
+			{
+				printf("Incorrect Input\n");
+				break;
 			}
-			}while(1);
+		}
+		
+	
+	}
+	while(1);
 
 return 0;
 }
@@ -74,12 +104,14 @@ void NewFile()
 	fp1=fopen(name,"w");
 	printf("\n\tPress Esc and then Enter to save.\n\t");
 	printf("Press Tab key and then Enter to quit without saving.\n\n\t");
+
 	char temp;
 	scanf("%c", &temp);
 
 	while(1)
 	{
-		c = getchar();
+		c=getchar();
+		fputc(c,fp1);
 
 		if(c == esc )
 		{
@@ -92,8 +124,6 @@ void NewFile()
 			remove(name);
 			break;
 		}	
-
-		fputc(c,fp1);
 
 	}
 }
@@ -156,7 +186,8 @@ void View()
 		printf("\n\tFile not found!");
 		return;
 	}
-	while(!feof(fp1))
+	printf("\t");
+	while( c != EOF )
 	{
 		c=getc(fp1);
 		printf("%c",c);
