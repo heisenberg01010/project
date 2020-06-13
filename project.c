@@ -115,7 +115,7 @@ void comparison()
     if (fp1 == NULL || fp2 == NULL) 
     { 
        printf("\tError : Files not open\n"); 
-       exit(0); 
+       return; 
     } 
 	char ch1 = getc(fp1); 
     char ch2 = getc(fp2);
@@ -173,6 +173,13 @@ void Copy()
 	fp1=fopen(name,"r");
 	fp2=fopen(fn,"w");
 
+	if(fp1 == NULL)
+	{
+		printf("\n\tFile not found!");
+		return;
+
+	}
+
 	while(!feof(fp1))
 	{
 		c=getc(fp1);
@@ -192,14 +199,13 @@ void Delete()
 	if(fp1==NULL)
 	{
 		printf("\n\tFile not found!");
-		printf("\n\n\tPress any key to continue\n");
+		return;
 	}
 	fclose(fp1);
 
 	if(remove(fn)==0)
 	{
 		printf("\n\n\tFile has been deleted successfully!");
-		printf("\n\n\tPress any key to continue\n");
 	}
 	else
 		printf("\n\tError!\n"); 
@@ -214,8 +220,7 @@ void Edit()
 	if(fp1==NULL)
 	{
 		printf("\n\tFile not found!");
-		fclose(fp1);
-		printf("\n\n\tPress any key to continue\n");
+		return;
 	}
 	while(!feof(fp1))
 	{
@@ -246,9 +251,18 @@ void SaveAs()
 	printf("\n\tEnter the new file name: ");
 	scanf("%s", fn);
 
+	fp1 = fopen(name, "r");
+	
+	if(fp1==NULL)
+	{
+		printf("\n\tFile not found!");
+		return;
+	}
+	
 	ch = rename(name, fn);
 
-	fp1 = fopen(name, "w");
+	remove(name);	
+
 
 	printf("\n\tpress '.' to save\n\n\t");
 
