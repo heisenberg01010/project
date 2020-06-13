@@ -4,7 +4,9 @@
 
 
 int ch;
+
 char fn[20],e,c,name[20];
+
 FILE *fp1,*fp2,*fp;
 
 void Modify();
@@ -16,6 +18,7 @@ void View();
 void comparison();
 void Edit();
 void Find();
+
 #define esc 27
 
 int main()
@@ -76,8 +79,7 @@ void NewFile()
 
 	while(1)
 	{
-		c=getchar();
-		fputc(c,fp1);
+		c = getchar();
 
 		if(c == esc )
 		{
@@ -90,6 +92,8 @@ void NewFile()
 			remove(name);
 			break;
 		}	
+
+		fputc(c,fp1);
 
 	}
 }
@@ -268,11 +272,14 @@ void Find()
 	scanf("%s",fn);
 	fp1=fopen(fn,"r");
 
+
 	if(fp1==NULL)
 	{
 		printf("\n\tFile not found!");
 		fclose(fp1);
 	}
+
+
 	char temp[100000];
 	int line = 1;
 	int match_no = 0;
@@ -296,6 +303,7 @@ void Find()
 		printf("\tNo match found");
 	}
 	fclose(fp1);
+	printf("Hello!");
 }
 
 
